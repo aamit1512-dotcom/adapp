@@ -1,102 +1,110 @@
 # 🚀 AdApp – Full Stack Web Application (React + Node.js)
 
-## 📌 Overview
+## 📌 Project Overview
 
-AdApp is a simple full-stack web application built using **React (frontend)** and **Node.js (backend)**.
-It demonstrates how a frontend communicates with a backend API over HTTP in a distributed environment.
+AdApp is a full-stack web application built using React.js for the frontend and Node.js (Express) for the backend.
 
----
-
-## 🏗️ Architecture
-
-Frontend (React)
-↓
-Nginx (Reverse Proxy - VM1)
-↓
-Backend API (Node.js - VM2)
+The project demonstrates frontend-backend communication in a distributed Azure environment using Nginx as a reverse proxy and private network communication between application tiers.
 
 ---
 
-## ⚙️ Tech Stack
+# 🏗️ Architecture
 
-* **Frontend:** React.js
-* **Backend:** Node.js (Express)
-* **Web Server:** Nginx
-* **Deployment:** Azure Virtual Machines
-* **Networking:** Private IP communication between VMs
-
----
-
-## 📂 Project Structure
-
+```text
+User Browser
+      │
+      ▼
+Nginx Reverse Proxy (Frontend VM)
+      │
+      ▼
+Backend API (Node.js VM - Private IP)
 ```
+
+---
+
+# ⚙️ Tech Stack
+
+| Component | Technology |
+|---|---|
+| Frontend | React.js |
+| Backend | Node.js / Express |
+| Reverse Proxy | Nginx |
+| Cloud Platform | Microsoft Azure |
+| Hosting | Azure Virtual Machines |
+| Networking | Private IP Communication |
+| Infrastructure | Terraform (separate IaC repository) |
+
+---
+
+# 📂 Project Structure
+
+```text
 adapp/
- ├── frontend/
- │    ├── src/
- │    ├── public/
- │    ├── package.json
- │
- ├── backend/
- │    ├── app.js
- │    ├── package.json
+│
+├── frontend/
+│   ├── src/
+│   ├── public/
+│   └── package.json
+│
+├── backend/
+│   ├── app.js
+│   └── package.json
 ```
 
 ---
 
-## 🚀 Getting Started (Local Setup)
+# 🚀 Local Setup
 
-### 🔹 1. Clone Repository
+## 1️⃣ Clone Repository
 
-```
+```bash
 git clone https://github.com/aamit1512-dotcom/adapp.git
 cd adapp
 ```
 
 ---
 
-### 🔹 2. Run Backend
+## 2️⃣ Start Backend
 
-```
+```bash
 cd backend
 npm install
 node app.js
 ```
 
-👉 Backend runs on:
+Backend runs on:
 
-```
+```text
 http://localhost:8080
 ```
 
 ---
 
-### 🔹 3. Run Frontend
+## 3️⃣ Start Frontend
 
-```
+```bash
 cd frontend
 npm install
 npm start
 ```
 
-👉 Frontend runs on:
+Frontend runs on:
 
-```
+```text
 http://localhost:3000
 ```
 
 ---
 
-## 🌐 API Endpoints
+# 🌐 API Endpoints
 
-### 🔹 Get Data
+## GET /api/data
 
-```
-GET /api/data
-```
+Returns application response from backend API.
 
-### ✅ Response
+### Sample Response
 
-```
+```json
 {
   "message": "Hello from backend"
 }
@@ -104,51 +112,60 @@ GET /api/data
 
 ---
 
-## ❤️ Health Check Endpoint
+# ❤️ Health Check Endpoint
 
-```
+```text
 GET /health
 ```
 
----
-
-## ☁️ Deployment (Azure)
-
-* **VM1:** Hosts React app using Nginx
-* **VM2:** Runs Node.js backend
-* **Application Gateway:** Routes external traffic
-* **NSG Rules:** Control access between tiers
+Used for application availability verification.
 
 ---
 
-## 🔥 Key Features
+# ☁️ Azure Deployment
 
-* Full-stack integration (React + Node.js)
-* REST API communication
-* Reverse proxy using Nginx
-* Private backend communication (secure)
-* Deployed on Azure infrastructure
-
----
-
-## 📸 Access Application
-
-```
-http://<APP_GATEWAY_PUBLIC_IP>
-```
+- Frontend application hosted on Azure VM using Nginx
+- Backend API deployed on separate Azure VM
+- Backend communication configured using private IP access
+- Azure Application Gateway used for external traffic routing
+- NSG rules configured for controlled inter-tier communication
 
 ---
 
-## 🧠 Learning Highlights
+# 🔥 Key Features
 
-* Frontend-backend integration
-* API design using Express
-* Azure VM communication using private IP
-* Debugging real-world issues (502, NSG, ports)
-* Nginx reverse proxy configuration
+- Full-stack React + Node.js application
+- Reverse proxy configuration using Nginx
+- Secure backend communication over private networking
+- Azure VM-based deployment architecture
+- REST API integration
+- Application health check endpoint
 
 ---
 
-## 👨‍💻 Author
+# 🧠 Learning Highlights
 
-**Amit Kumar**
+This project helped in understanding:
+
+- Frontend and backend integration
+- Nginx reverse proxy configuration
+- Azure VM communication using private IPs
+- Basic application deployment architecture
+- Network Security Group (NSG) configuration
+- Troubleshooting deployment and connectivity issues
+
+---
+
+# 🔗 Related Infrastructure Repository
+
+Terraform infrastructure repository:
+
+https://github.com/aamit1512-dotcom/webapp-iac
+
+---
+
+# 👨‍💻 Author
+
+Amit Kumar
+
+DevOps Engineer | Azure | Terraform | Docker | Kubernetes
