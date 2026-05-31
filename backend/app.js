@@ -1,14 +1,25 @@
-const express = require("express");
-const app = express();
+import React, { useEffect, useState } from "react";
 
-app.get("/", (req, res) => {
-  res.send("Backend is working 🚀");
-});
+function App() {
+  const [message, setMessage] = useState("");
 
-app.get("/api/data", (req, res) => {
-  res.json({ message: "Hello from backend" });
-});
+  useEffect(() => {
+    fetch("/api/data")
+      .then((res) => res.json())
+      .then((data) => setMessage(data.message))
+      .catch((err) => {
+        console.log(err);
+        setMessage("Backend connection failed");
+      });
+  }, []);
 
-app.listen(8080, "0.0.0.0", () => {
-  console.log("Server running on port 8080");
-});
+  return (
+    <div style={{ textAlign: "center", marginTop: "50px" }}>
+      <h1>Frontend is running 🎯</h1>
+      <h2>Backend response:</h2>
+      <p>{message}</p>
+    </div>
+  );
+}
+
+export default App;
